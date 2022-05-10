@@ -316,7 +316,6 @@ rm -rf /etc/nginx/conf.d
 mkdir -p /etc/nginx/conf.d
 wget -O /etc/nginx/conf.d/${domain}.conf "${repoDir}files/xray/web.conf" > /dev/null 2>&1
 sed -i "s/xx/${domain}/g" /etc/nginx/conf.d/${domain}.conf
-sed -i "s/ip/${ip}/g" /etc/nginx/conf.d/${domain}.conf
 sed -i "/^ExecStart=.*/i ExecStartPost=/bin/sleep 0.1" /usr/lib/systemd/system/nginx.service
 systemctl daemon-reload
 systemctl restart nginx
