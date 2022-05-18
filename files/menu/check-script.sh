@@ -24,7 +24,7 @@ checkScreen() {
 
 checkService() {
 	echo -e ""
-	echo -e "==========[ Service Status ]=========="
+	echo -e "======[ Service Status ]======"
 	echo -e ""
 	echo -e "SSH: $(checkRun ssh)"
 	echo -e "Dropbear: $(checkRun dropbear)"
@@ -42,7 +42,7 @@ checkService() {
 	echo -e "Fail2Ban: $(checkRun fail2ban)"
 	echo -e "DDoS Deflate: $(checkRun ddos)"
 	echo -e ""
-	echo -e "======================================"
+	echo -e "=============================="
 	echo -e ""
 }
 
