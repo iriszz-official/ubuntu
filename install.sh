@@ -77,8 +77,8 @@ apt autoremove -y > /dev/null 2>&1
 
 # Install script dependencies
 echo -e "${PURPLE}[+] Installing script dependencies ...${NC}"
-apt install -y systemd curl wget curl screen cmake zip unzip vnstat tar openssl git > /dev/null 2>&1
-checkInstall "systemd curl wget curl screen cmake unzip vnstat tar openssl git"
+apt install -y systemd curl wget curl screen cmake zip unzip vnstat tar openssl git uuid-runtime > /dev/null 2>&1
+checkInstall "systemd curl wget curl screen cmake unzip vnstat tar openssl git uuid-runtime"
 
 # Get domain
 echo -e ""
@@ -119,7 +119,9 @@ sysctl -w net.ipv6.conf.default.disable_ipv6=1 > /dev/null 2>&1
 sysctl -w net.ipv6.conf.lo.disable_ipv6=1 > /dev/null 2>&1
 echo -e "net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
-net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
+net.ipv6.conf.lo.disable_ipv6 = 1
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr" >> /etc/sysctl.conf
 sysctl -p > /dev/null 2>&1
 
 # Reset iptables
@@ -316,7 +318,8 @@ rm -rf /etc/nginx/conf.d
 mkdir -p /etc/nginx/conf.d
 wget -O /etc/nginx/conf.d/${domain}.conf "${repoDir}files/xray/web.conf" > /dev/null 2>&1
 sed -i "s/xx/${domain}/g" /etc/nginx/conf.d/${domain}.conf
-sed -i "/^ExecStart=.*/i ExecStartPost=/bin/sleep 0.1" /usr/lib/systemd/system/nginx.service
+nginxConfig=$(systemctl status nginx | grep loaded | awk '{print $3}' | tr -d "(;")
+sed -i "/^ExecStart=.*/i ExecStartPost=/bin/sleep 0.1" $nginxConfig
 systemctl daemon-reload
 systemctl restart nginx
 systemctl enable nginx > /dev/null 2>&1
