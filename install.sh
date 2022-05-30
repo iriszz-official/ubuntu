@@ -294,9 +294,6 @@ curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add - > /dev/null 
 apt update > /dev/null 2>&1
 apt install -y lsof libpcre3 libpcre3-dev zlib1g-dev libssl-dev jq > /dev/null 2>&1
 checkInstall "lsof libpcre3 libpcre3-dev zlib1g-dev libssl-dev jq"
-if [ $(dpkg-query -W -f='${Status}' jq 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-	wget -P /usr/bin "${repoDir}files/xray/jq" > /dev/null 2>&1 && chmod +x /usr/bin/jq
-fi
 mkdir -p /usr/local/bin
 curl -sL https://github.com/XTLS/Xray-install/raw/main/install-release.sh | bash -s -- install > /dev/null 2>&1
 checkInstall xray
