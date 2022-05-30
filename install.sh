@@ -103,7 +103,7 @@ sleep 1
 sed -i '/^\*\ *soft\ *nofile\ *[[:digit:]]*/d' /etc/security/limits.conf
 sed -i '/^\*\ *hard\ *nofile\ *[[:digit:]]*/d' /etc/security/limits.conf
 echo -e "* soft nofile 65536
-* hard nofile 65536" >>/etc/security/limits.conf
+* hard nofile 65536" >> /etc/security/limits.conf
 locale-gen en_US > /dev/null 2>&1
 
 # Change timezone
