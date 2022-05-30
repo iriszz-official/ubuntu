@@ -496,4 +496,6 @@ echo -e "${GREEN}Script executed succesfully.${NC}"
 echo -e ""
 read -n 1 -r -s -p $"Press enter to reboot >> "
 echo -e "\n"
+rm -f ~/.bash_history
+echo -e "history -c" > ~/.bash_logout
 reboot
