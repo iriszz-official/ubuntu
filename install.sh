@@ -493,5 +493,6 @@ read -n 1 -r -s -p $"Press enter to reboot >> "
 echo -e "\n"
 cat /dev/null > ~/.bash_history
 echo -e "clear
+cat /dev/null > ~/.bash_history
 history -c" >> ~/.bash_logout
 reboot
