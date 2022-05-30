@@ -119,9 +119,7 @@ sysctl -w net.ipv6.conf.default.disable_ipv6=1 > /dev/null 2>&1
 sysctl -w net.ipv6.conf.lo.disable_ipv6=1 > /dev/null 2>&1
 echo -e "net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
-net.ipv6.conf.lo.disable_ipv6 = 1
-net.core.default_qdisc = fq
-net.ipv4.tcp_congestion_control = bbr" >> /etc/sysctl.conf
+net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
 sysctl -p > /dev/null 2>&1
 
 # Reset iptables
@@ -496,6 +494,6 @@ echo -e "${GREEN}Script executed succesfully.${NC}"
 echo -e ""
 read -n 1 -r -s -p $"Press enter to reboot >> "
 echo -e "\n"
-rm -f ~/.bash_history
-echo -e "history -c" > ~/.bash_logout
+cat /dev/null > ~/.bash_history
+echo -e "history -c" >> ~/.bash_logout
 reboot
