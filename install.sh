@@ -122,6 +122,15 @@ net.ipv6.conf.default.disable_ipv6 = 1
 net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
 sysctl -p > /dev/null 2>&1
 
+# Enable BBR
+echo -e "${PURPLE}[+] Enabling BBR ...${NC}"
+sleep 1
+sysctl -w net.core.default_qdisc=fq > /dev/null 2>&1
+sysctl -w net.ipv4.tcp_congestion_control=bbr > /dev/null 2>&1
+echo -e "net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr" >> /etc/sysctl.conf
+sysctl -p > /dev/null 2>&1
+
 # Reset iptables
 echo -e "${PURPLE}[+] Resetting iptables ...${NC}"
 sleep 1
