@@ -51,6 +51,8 @@ Script ni akan install service VPN yang mainstream untuk kegunaan bypass Interne
 
 ## Installation
 Copy dan paste code di bawah ke dalam terminal lalu tekan enter.
+
+Ubuntu 20.04:
 ```bash
 wget -qO install.sh "https://raw.githubusercontent.com/iriszz-official/ubuntu/main/install.sh"; chmod +x install.sh; ./install.sh
 ```
