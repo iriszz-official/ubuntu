@@ -49,8 +49,8 @@ clear
 # Check environment
 function os_check() {
 	source '/etc/os-release'
-	if [[ "${ID}" != "ubuntu" && $(echo "${VERSION_ID}" | cut -d '.' -f1) -lt 20 ]]; then
-		echo -e "${RED}This script is only for Ubuntu 18 and above.${NC}\n"
+	if [[ "${ID}" != "ubuntu" && $(echo "${VERSION_ID}") != "20.04" ]]; then
+		echo -e "${RED}This script is only for Ubuntu 20.04.${NC}\n"
 		exit 1
 	fi
 }
@@ -495,13 +495,13 @@ chmod +x /usr/bin/{menu,ssh-vpn-script,xray-script,wireguard-script,check-script
 
 # Cleanup and reboot
 rm -f /root/install.sh
+cat /dev/null > ~/.bash_history
+echo -e "clear
+cat /dev/null > ~/.bash_history
+history -c" >> ~/.bash_logout
 echo -e ""
 echo -e "${GREEN}Script executed succesfully.${NC}"
 echo -e ""
 read -n 1 -r -s -p $"Press enter to reboot >> "
 echo -e "\n"
-cat /dev/null > ~/.bash_history
-echo -e "clear
-cat /dev/null > ~/.bash_history
-history -c" >> ~/.bash_logout
 reboot
