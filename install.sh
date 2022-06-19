@@ -153,7 +153,7 @@ sleep 1
 mkdir /voidvpn
 wget -O /voidvpn/cron.daily "${repoDir}files/cron.daily" > /dev/null 2>&1
 chmod +x /voidvpn/cron.daily
-(crontab -l;echo "0 0 * * * /voidvpn/cron.daily") | crontab -
+(crontab -l; echo "0 0 * * * /voidvpn/cron.daily") | crontab -
 
 # Configure SSH
 echo -e "${PURPLE}[+] Configuring SSH ...${NC}"
