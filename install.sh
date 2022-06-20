@@ -401,8 +401,9 @@ checkRun wg-quick@wg0
 # Install Speedtest CLI
 echo -e "${PURPLE}[+] Installing Speedtest CLI ...${NC}"
 sleep 1
-curl -s https://install.speedtest.net/app/cli/install.deb.sh | bash > /dev/null 2>&1
-apt install -y speedtest > /dev/null 2>&1
+wget -O speedtest.tgz "https://install.speedtest.net/app/cli/ookla-speedtest-1.1.1-linux-$(uname -m).tgz" > /dev/null 2>&1
+tar xvf speedtest.tgz -C /usr/bin/ speedtest > /dev/null 2>&1
+rm -f speedtest.tgz
 checkInstall speedtest
 
 # Install fail2ban
@@ -474,7 +475,7 @@ systemctl start wg-quick@wg0
 echo -e "${PURPLE}[+] Configuring Google Drive backup ...${NC}"
 sleep 1
 apt install golang -y > /dev/null 2>&1
-go get github.com/prasmussen/gdrive
+go install github.com/prasmussen/gdrive
 checkInstall gdrive
 cp /root/go/bin/gdrive /usr/bin/
 chmod +x /usr/bin/gdrive
