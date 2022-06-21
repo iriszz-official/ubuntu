@@ -403,8 +403,8 @@ echo -e "${PURPLE}[+] Installing Speedtest CLI ...${NC}"
 sleep 1
 wget -O speedtest.tgz "https://install.speedtest.net/app/cli/ookla-speedtest-1.1.1-linux-$(uname -m).tgz" > /dev/null 2>&1
 tar xvf speedtest.tgz -C /usr/bin/ speedtest > /dev/null 2>&1
-rm -f speedtest.tgz
 checkInstall speedtest
+rm -f speedtest.tgz
 
 # Install fail2ban
 echo -e "${PURPLE}[+] Installing Fail2Ban ...${NC}"
