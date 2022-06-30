@@ -474,9 +474,10 @@ systemctl start wg-quick@wg0
 # Configure Google Drive backup
 echo -e "${PURPLE}[+] Configuring Google Drive backup ...${NC}"
 sleep 1
-add-apt-repository -y ppa:longsleep/golang-backports
+add-apt-repository -y ppa:longsleep/golang-backports > /dev/null 2>&1
+apt update > /dev/null 2>&1
 apt install golang -y > /dev/null 2>&1
-go install github.com/prasmussen/gdrive@latest
+go install github.com/prasmussen/gdrive@latest > /dev/null 2>&1
 checkInstall gdrive
 cp /root/go/bin/gdrive /usr/bin/
 chmod +x /usr/bin/gdrive
